@@ -9,11 +9,11 @@ app.use(express.json())
 app.use(`${process.env.BASE_URL}/usuarios`, userRouter)
 
 
-app.all('*', globalErrorHandler)
-
-app.use((err, req, res, next)=> {
-  
-  new AppError('teste', 404)
+app.all('*', (req, res, next)=> {
+  next(new AppError('My error message', 404))
 })
+
+
+app.use(globalErrorHandler)
 
 module.exports = app
