@@ -11,6 +11,9 @@ app.use(`${process.env.BASE_URL}/usuarios`, userRouter)
 
 app.all('*', globalErrorHandler)
 
-app.use(new AppError('teste', 404))
+app.use((err, req, res, next)=> {
+  
+  new AppError('teste', 404)
+})
 
 module.exports = app
